@@ -1,5 +1,7 @@
 <?php
-
+$produits1=[["Nom"=>"Stylo Bleu","Prix"=>"2000","Categorie"=>"Ecriture"],["Nom"=>"Stylo Rouge","Prix"=>"2000","Categorie"=>"Ecriture"],["Nom"=>"Crayon HB","Prix"=>"1000","Categorie"=>"Ecriture"],["Nom"=>"Feutre de couleur","Prix"=>"8000","Categorie"=>"Ecriture"],["Nom"=>"Correcteur","Prix"=>"4000","Categorie"=>"Ecriture"]];
+$produits2=[["Nom"=>"Cahier 100 pages","Prix"=>"5000","Categorie"=>"Cahier et Papier"],["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"],["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"],["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"],["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"]];
+$produits3=[["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"],["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"],["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"],["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"],["Nom"=>"Stylo","Prix"=>"1000","Categorie"=>"Ecriture"]];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,5 +36,48 @@
     </div>
   </div>
 </nav>
+<br>
+<h3 class="text-center bg-primary">Categorie Ecriture</h3>
+<?php foreach($produits1 as $p1) { ?>
+                
+                <p>
+                    <strong>
+                        <?php echo ($p1["Nom"]);?>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        <?php echo ($p1["Prix"]);?>
+                    </strong>
+                </p> 
+<?php } ?>
+<h3 class="text-center bg-primary">Categorie Cahier et Papier</h3>
+<?php foreach($produits2 as $p2) { ?>
+                
+                <p>
+                    <strong>
+                        <?php echo ($p2["Nom"]);?>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        <?php echo ($p2["Prix"]);?>
+                    </strong>
+                </p> 
+<?php } ?>
+<h3 class="text-center bg-primary">Categorie Accessoires Scolaires</h3>
+<?php foreach($produits3 as $p3) { ?>
+                
+                <p>
+                    <strong>
+                        <?php echo ($p3["Nom"]);?>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        <?php echo ($p3["Prix"]);?>
+                    </strong>
+                </p> 
+<?php } ?>
 </body>
 </html>
