@@ -1,0 +1,32 @@
+.trou{display: flex;margin-left: 800px;gap: 40px;}
+button{border: hidden ;
+    color: green;
+    background-color: #FFC107;
+    font-size: 30px;}
+.grid{display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;}   
+.item{background-color:#FFC107;height: 250px;border-radius: 30px;}    
+.terrain{display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;gap: 10px;}
+.trade{background-color: rgb(248, 249, 250)
+    ;height: 200px;width: 150px
+    ;border-radius: 30px;
+    border: 20% #ffffff;
+    text-align: center;height: max-content;}
+.zar{width: 100%;border-radius: 50px;height: 500px;} 
+.raer{border-radius: 30px;width:150px;height: 150px;}  
+.we{display: flex;margin-left: 750px;gap: 40px;}
+h6{color: green;}
+.van{background-color: #FFC107;}
+table{background-color: black;}
+.dom{display: grid;
+    grid-template-columns: repeat(2, 1fr)}
+ h1{color: #ffffff;
+    font-size: x-large;
+    text-align: center;
+    background-color: green;}
+ .rin{margin-left: 90%;}
+ .flex{display: flex;}
+ .content-list{height: 550px;background: #FFC107;}
