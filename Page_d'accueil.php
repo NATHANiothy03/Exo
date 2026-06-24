@@ -1,21 +1,4 @@
 <?php
-session_start();
-
- $total=0;
- if(isset($_POST["Fourniture"]) && !isset($_SESSION["Fourniture"]))
-    {
-    $_SESSION["Fourniture"]=[];
-    }
-  foreach($_SESSION["Fourniture"] as $f)
-            {
-                $total+=$f["PT"] ;   
-            }
-    if (isset($_POST['supp_session'])) {
-    session_unset();
-    session_destroy();
-    header("Location: #Panier"); 
-    exit;
-}         
 $produits1=[["Nom"=>"Stylo Bleu","Prix"=>"2000","Categorie"=>"Ecriture","img"=>"SB.JPG"],["Nom"=>"Stylo Rouge","Prix"=>"2000","Categorie"=>"Ecriture","img"=>"SR.JPG"],["Nom"=>"Crayon HB","Prix"=>"1000","Categorie"=>"Ecriture","img"=>"CR.JPG"],["Nom"=>"Feutre de couleur","Prix"=>"8000","Categorie"=>"Ecriture","img"=>"FC.JPG"],["Nom"=>"Correcteur","Prix"=>"4000","Categorie"=>"Ecriture","img"=>"C.JPG"]];
 $produits2=[["Nom"=>"Cahier 100 pages","Prix"=>"5000","Categorie"=>"Cahier et Papier","img"=>"100.JPG"],["Nom"=>"Cahier 200 Pages","Prix"=>"8000","Categorie"=>"Cahier et Papier","img"=>"200.JPG"],["Nom"=>"Bloc-Notes","Prix"=>"3500","Categorie"=>"Cahier et Papier","img"=>"BC.JPG"],["Nom"=>"Papier A4","Prix"=>"25000","Categorie"=>"Cahier et Papier","img"=>"A4.PNG"],["Nom"=>"Carnet de Notes","Prix"=>"6000","Categorie"=>"Cahier et Papier","img"=>"CN.JPG"]];
 $produits3=[["Nom"=>"Regles 30cm","Prix"=>"2500","Categorie"=>"Accessoires","img"=>"R.JPG"],["Nom"=>"Equerre","Prix"=>"3000","Categorie"=>"Accessoires","img"=>"E.JPG"],["Nom"=>"Compas","Prix"=>"7000","Categorie"=>"Accessoires","img"=>"compas.JPG"],["Nom"=>"Trousse","Prix"=>"12000","Categorie"=>"Accessoires","img"=>"trousse.JPG"],["Nom"=>"Sac a dos","Prix"=>"45000","Categorie"=>"Accessoires","img"=>"SAC.JPG"]];
@@ -42,14 +25,33 @@ $a4=new panier("Trousse",12000,1,"trousse.JPG");
 $a5=new panier("Sac a dos",45000,1,"SAC.JPG");
 $taba=[$a1,$a2,$a3,$a4,$a5];
 
+session_start();
+
+ $total=0;
+ if(isset($_POST["Fourniture"]) && !isset($_SESSION["Fourniture"]))
+    {
+    $_SESSION["Fourniture"]=[];
+    }
+ if(isset($_POST["Fourniture"]))
+    {
+    foreach($_SESSION["Fourniture"] as $f)
+            {
+                $total+=$f["PT"] ;   
+            }
+    }        
+    if (isset($_POST['supp_session'])) {
+    session_unset();
+    session_destroy();
+    header("Location: #Panier"); 
+    exit;
+}         
+
 if(isset($_POST["Fourniture"])!=null)
     {
-        header("location:#Panier");
         $n=$_POST["nom"];
-        $x=$_POST["prix"];
-        $total=0;
-        $p=$_POST["Fourniture"];
-        // $_SESSION["panier"]=[];
+        $x=$_POST["prix"];    
+        $p=(int)$_POST["Fourniture"];
+         $total=0;
         if($p>0)
             {
                 $_SESSION["Fourniture"][]=["nom"=>$n,
@@ -57,18 +59,16 @@ if(isset($_POST["Fourniture"])!=null)
                                         "quantite"=>$p,
                                         "PT"=>$x*$p,
                                       ];
+            header("location:#Panier");
+            exit();        
             }
-            foreach($_SESSION["Fourniture"] as $p)
-            {
-                $total+=$p["PT"] ;   
-            }           
     }  
 if(isset($_GET["remove"])) 
     {
         $Fourniture=$_GET["remove"];
         unset($_SESSION["Fourniture"][$Fourniture]);
         $_SESSION["Fourniture"]= array_values($_SESSION["Fourniture"]);
-        header("Location:". $_SERVER['PHP_SELF']);
+        header("Location: Page_d'accueil.php#Panier");
     } 
 if(isset($POST['supp_session'])) 
     {
@@ -226,8 +226,6 @@ if(isset($POST['supp_session']))
         </div>
     </section>
     <br>
-<div class="d-md-flex justify-content-md-end">
-<a href="#Panier"><button type="button" class="btn btn-outline-success ">Confirmer</button></a>
 </form>
 </div>
 <br>
@@ -251,7 +249,9 @@ if(isset($POST['supp_session']))
         </tr>
       </thead>
       <tbody>
-        <?php foreach($_SESSION["Fourniture"] as $Fourniture=>$f) { ?>
+        <?php
+        $total=0;
+         foreach(($_SESSION["Fourniture"] ?? []) as $Fourniture=>$f) {  $total+=(float)$f["PT"] ;   ?>
             <tr>
             <th scope="row" class="table-light"><?php echo $f["nom"] ?></th>
             <td class="table-light"><?php echo $f["quantite"]?></td>

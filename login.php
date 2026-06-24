@@ -15,11 +15,13 @@ if(isset ($_POST["nom"]) && isset ($_POST["mot"]))
                         $reponse="";
                         if($_POST["mot"]==$mdp[$i])
                             {
+                                echo"<script>alert('Achat Reussi.Merci pour votre Confiance');</script>";
                                 $reponse="Mot de passe correct!";
-                                header("Location:Page_d'accueil.php");
+                               echo"<script>window.location.href ='https://www.google.com';</script>";
                             }
                         else
                             {
+                                echo"<script>alert('Mot de Passe incorrecte');</script>";
                                 $reponse="Mot de passe incorrecte!";
                             }
                             break;
@@ -67,7 +69,7 @@ if(isset ($_POST["nom"]) && isset ($_POST["mot"]))
 </div>
 <br>
 <div class="d-md-flex justify-content-md-end">
-        <button type="submit" class="btn btn-success" onclick="alert('Achat reussi.Merci pour votre Confiance')" >Envoyer</button>
+        <button type="submit" class="btn btn-success" >Envoyer</button>
 </div>        
     </form>
     <p class="text-danger"><?php echo $reponse ?></p>
